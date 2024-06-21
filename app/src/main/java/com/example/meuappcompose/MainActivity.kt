@@ -44,6 +44,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -136,7 +137,7 @@ Box(
             .fillMaxWidth()
             .height(360.dp)
             .clip(rectShape)
-            .background(color = Color.Blue)
+            .background(color = colorResource(id = R.color.blueP))
     )
 }
 // cria uma box com uma imagem para adicionar o icone ao topo da ui
@@ -171,7 +172,7 @@ val pizzaDesc = pizzaDescricao[pages]
     ) {
         Box(
             modifier = Modifier
-                .padding(bottom = 8.dp, top = 90.dp)
+                .padding(bottom = 540.dp)
         ) {
 
             AnimatedContent(
@@ -197,17 +198,14 @@ val pizzaDesc = pizzaDescricao[pages]
                 )
             }
         }
-        Column(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    }
 //conjunto para o PizzaPrice
 
-            Box(
-                modifier = Modifier
-                    .padding(top = 300.dp, end = 220.dp)
-            ) {
+        Box(
+            modifier = Modifier
+                .padding(top = 450.dp, end = 50.dp, start = 50.dp, bottom = 10.dp)
+        ) {
+            Column {
                 AnimatedContent(
                     targetState = pizzaPreco,
                     transitionSpec = {
@@ -229,34 +227,29 @@ val pizzaDesc = pizzaDescricao[pages]
                         )
                     )
                 }
-            }
-            //conjunto do DescricaoPizza
 
-                Box(
-                    modifier = Modifier
-                        .padding(top = 10.dp, start = 50.dp, end = 50.dp)
-                ) {
-                    AnimatedContent(
-                        targetState = pizzaDesc,
-                        transitionSpec = {
-                            if (targetState != initialState) {
-                                slideInVertically(tween(durationMillis = 1000)) { it } with slideOutVertically { -it }
-                            } else {
-                                slideInVertically(tween(durationMillis = 1000)) { -it } with slideOutVertically { it }
-                            }
+                //conjunto do DescricaoPizza
+
+                AnimatedContent(
+                    targetState = pizzaDesc,
+                    transitionSpec = {
+                        if (targetState != initialState) {
+                            slideInVertically(tween(durationMillis = 1000)) { it } with slideOutVertically { -it }
+                        } else {
+                            slideInVertically(tween(durationMillis = 1000)) { -it } with slideOutVertically { it }
                         }
-                    ) { targetDes ->
-                        Text(
-                            text = targetDes,
-                            fontSize = 15.sp,
-                            textAlign = TextAlign.Start,
-                            style = TextStyle(
-                                color = Color.Black,
-                                fontSize = 30.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        )
                     }
+                ) { targetDes ->
+                    Text(
+                        text = targetDes,
+                        fontSize = 15.sp,
+                        textAlign = TextAlign.Start,
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 30.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
                 }
             }
         }
@@ -264,7 +257,8 @@ val pizzaDesc = pizzaDescricao[pages]
 
 // cria o horizontal pager com uma box para posicionar os itens corretamente na ui
         Box(
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(top = 180.dp),
             contentAlignment = Alignment.TopCenter
         ) {
