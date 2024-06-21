@@ -83,9 +83,9 @@ fun PizzaScreen() {
 
     val pizzaName = listOf(
        "Salame",
-        "Four Chees",
+        "Four Cheese",
         "Capricciosa",
-        "Mozzarella",
+        "Margherita",
         "Prosciutto"
     )
 val pizzaValor = listOf(
@@ -96,6 +96,16 @@ val pizzaValor = listOf(
     "€15,90"
 
 )
+    val pizzaDescricao = listOf(
+        "Uma pizza deliciosa que aconpanha: Molho de tomate,queijo , rodelas de salame e azeitonas",
+        "Uma pizza deliciosa que aconpanha: Molho de tomate,queijo mussarela,queijo parmezao, queijo cheddar, queijo de cabra e azeitonas",
+        "Uma pizza deliciosa que aconpanha: Molho de tomate,queijo ,champignon,cebola roxa e azeitonas",
+        "Uma pizza deliciosa que aconpanha: Molho de tomate,queijo mussarela, tomate,margherita e azeitonas",
+        "Uma pizza deliciosa que aconpanha: Molho de tomate,queijo e fatias de presunto",
+
+
+
+    )
     // inicia o item central com a pizza capricciosa , assim ja fica os dois itens ao lado
     val initialPage = 2
     val pagerState = rememberPagerState( //guarda a posicao atual do item , mesmo fazndo a rolagem
@@ -134,7 +144,7 @@ Box(
     modifier = Modifier
         .fillMaxSize()
         .padding(top = 10.dp,)
-        .padding(start = 10.dp),
+        .padding(start = 30.dp),
     contentAlignment = Alignment.TopStart
 ){
     Image(
@@ -147,63 +157,64 @@ Box(
 
     )
 }
-
+// aqui esta a criacao da animacao para os textos de nomePizza e pizzaPreco
 
     val pages = pagerState.currentPage
     val currentPages = pizzaName[pages]
     val pizzaPreco = pizzaValor[pages]
+val pizzaDesc = pizzaDescricao[pages]
 
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.TopCenter
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Box(
+            modifier = Modifier
+                .padding(bottom = 8.dp, top = 90.dp)
+        ) {
+
+            AnimatedContent(
+                targetState = currentPages,
+                transitionSpec = {
+                    if (targetState != initialState) {
+                        slideInVertically(tween(durationMillis = 1000)) { it } with slideOutVertically { -it }
+                    } else {
+                        slideInVertically(tween(durationMillis = 1000)) { -it } with slideOutVertically { it }
+                    }
+
+                }
+            ) { targetName ->
+                Text(
+                    text = targetName,
+                    fontSize = 25.sp,
+                    textAlign = TextAlign.Start,
+                    style = TextStyle(
+                        color = Color.White,
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                )
+            }
+        }
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Box(
-                modifier = Modifier
-                    .padding(bottom = 400.dp)
-
-            ) {
-                AnimatedContent(
-                    targetState = currentPages,
-                    transitionSpec = {
-                        if (targetState != initialState) {
-                            slideInVertically(tween(durationMillis = 800)) { it } with slideOutVertically { -it }
-                        } else {
-                            slideInVertically (tween(durationMillis = 800)){ -it }  with slideOutVertically { it }
-                        }
-
-                    }
-                ) { targetName ->
-                    Text(
-                        text = targetName,
-                        fontSize = 25.sp,
-                        textAlign = TextAlign.Start,
-                        style = TextStyle(
-                            color = Color.White,
-                            fontSize = 28.sp,
-                            fontWeight = FontWeight.Bold
-                        )
-                    )
-                }
-            }
+//conjunto para o PizzaPrice
 
             Box(
                 modifier = Modifier
-                    .padding(bottom = 250.dp, end = 220.dp)
+                    .padding(top = 300.dp, end = 220.dp)
             ) {
                 AnimatedContent(
                     targetState = pizzaPreco,
                     transitionSpec = {
                         if (targetState != initialState) {
-                            slideInVertically(tween(durationMillis = 1000)) { it }  with slideOutVertically { -it }
+                            slideInVertically(tween(durationMillis = 1000)) { it } with slideOutVertically { -it }
                         } else {
-                            slideInVertically (tween(durationMillis = 1000)){ -it }  with slideOutVertically { it }
+                            slideInVertically(tween(durationMillis = 1000)) { -it } with slideOutVertically { it }
                         }
                     }
                 ) { targetPrice ->
@@ -219,8 +230,36 @@ Box(
                     )
                 }
             }
+            //conjunto do DescricaoPizza
+
+                Box(
+                    modifier = Modifier
+                        .padding(top = 10.dp, start = 50.dp, end = 50.dp)
+                ) {
+                    AnimatedContent(
+                        targetState = pizzaDesc,
+                        transitionSpec = {
+                            if (targetState != initialState) {
+                                slideInVertically(tween(durationMillis = 1000)) { it } with slideOutVertically { -it }
+                            } else {
+                                slideInVertically(tween(durationMillis = 1000)) { -it } with slideOutVertically { it }
+                            }
+                        }
+                    ) { targetDes ->
+                        Text(
+                            text = targetDes,
+                            fontSize = 15.sp,
+                            textAlign = TextAlign.Start,
+                            style = TextStyle(
+                                color = Color.Black,
+                                fontSize = 30.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                        )
+                    }
+                }
+            }
         }
-    }
 
 
 // cria o horizontal pager com uma box para posicionar os itens corretamente na ui
