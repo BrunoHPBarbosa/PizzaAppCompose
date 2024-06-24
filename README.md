@@ -1,4 +1,4 @@
-Overview
+[EN] Overview
 
 Pizza App is an Android application developed using Jetpack Compose, Android's new declarative UI library. It allows users to explore different types of pizza and select the size they want, with smooth animations and a modern interface.
 
@@ -17,7 +17,7 @@ Animations: Uses Jetpack Compose animations for smooth transitions between diffe
 Preview: Integrated preview functions for testing composables directly in Android Studio.
 
 
-Visão Geral
+[PT] Visão Geral
 O Pizza App é um aplicativo Android desenvolvido utilizando o Jetpack Compose, a nova biblioteca declarativa de UI do Android. Ele permite aos usuários explorar diferentes tipos de pizzas e selecionar o tamanho desejado, com animações suaves e uma interface moderna.
 
 Tecnologias Utilizadas:
