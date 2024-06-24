@@ -387,7 +387,7 @@ fun Checkout(onClick: () -> Unit) {
                 .fillMaxWidth(),
                     shape = RoundedCornerShape(80.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Yellow
+                containerColor = colorResource(id = R.color.laranja)
                 )
         ) {
             Text(
