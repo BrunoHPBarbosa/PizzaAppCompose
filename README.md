@@ -33,3 +33,7 @@ Funcionalidades Principais:
 Seleção de Tamanho: Permite ao usuário selecionar entre os tamanhos de pizza S, M e L.
 Animações: Utiliza animações do Jetpack Compose para transições suaves entre diferentes estados da interface.
 Pré-visualização: Funções de pré-visualização integradas para testar os composables diretamente no Android Studio.
+
+
+https://github.com/BrunoHPBarbosa/PizzaAppCompose/assets/141725324/e3141f10-ab6a-494e-b372-02dafaf4f99a
+
