@@ -337,12 +337,12 @@ fun PizzaTamanhoBtn(text : String,isSelected : Boolean, onClick :  () -> Unit) {
             .height(70.dp)
             .width(50.dp)
             .border(
-                border = BorderStroke(2.dp, color = Color.Yellow),
+                border = BorderStroke(2.dp, color = colorResource(id = R.color.blueb)),
                 shape = RoundedCornerShape(24.dp)
             )
             .background(Color.Transparent),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (isSelected)Color.Yellow else Color.Transparent,
+            containerColor = if (isSelected) colorResource(id = R.color.blueb) else Color.Transparent,
             contentColor = Color.Black
         ),
         contentPadding = PaddingValues()
@@ -384,11 +384,11 @@ fun Checkout(onClick: () -> Unit) {
             modifier = Modifier
                 .padding(top = 6.dp, start = 50.dp, end = 50.dp, bottom = 0.dp)
                 .height(65.dp)
-                .fillMaxWidth()
-
-                .background(
-                    Color.Yellow, RoundedCornerShape(80.dp)
-                ),
+                .fillMaxWidth(),
+                    shape = RoundedCornerShape(80.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Yellow
+                )
         ) {
             Text(
                 text = "Order Now",
