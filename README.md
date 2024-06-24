@@ -16,6 +16,7 @@ Size selection: Allows the user to select between pizza sizes S, M and L.
 Animations: Uses Jetpack Compose animations for smooth transitions between different interface states.
 Preview: Integrated preview functions for testing composables directly in Android Studio.
 
+-------------------------------------------------------------------------------
 
 [PT] Visão Geral
 
